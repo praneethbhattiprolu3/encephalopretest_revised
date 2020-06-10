@@ -1,4 +1,5 @@
 # Encephalo Investments Coding Pre-Test - Revised April 2020
+##Praneeth Bhattiprolu
 
 import pandas as pd
 import numpy as np
@@ -8,9 +9,11 @@ import math
 def cleanse_data(df):
     # Your task here is to remove data from any ticker that isn't XXY, sort chronologically and return a dataframe
     # whose only column is 'Adj Close'
-    dfclean = df
-    return dfclean
-
+    newlst = []
+    for line in df:
+        if df[1] == "XXY":
+            newlst += df[2]
+    return newlst
 
 def mc_sim(sims, days, df):
     # The code for a crude monte carlo simulation is given below. Your job is to extract the mean expected price
@@ -37,6 +40,15 @@ def mc_sim(sims, days, df):
 
         simulation_df[x] = price_series
 
+        mean = sum(simulation_df) / 5
+        len = 5
+        std = np.std(simulation_df)
+        df2 = 1.96 * (std/math.sqrt(len))
+        mean1 = mean - df
+        mean2 = mean + df
+        expectedP = (mean1 + mean2) / 2
+        return expectedP
+
     # FILL OUT THE REST OF THE CODE. The above code has given you 'sims' of simulations run 'days' days into the future.
     # Your task is to return the expected price on the last day +/- the 95% confidence interval.
     return
@@ -45,7 +57,7 @@ def main():
     filename = '20192020histdata.csv'
     rawdata = pd.read_csv(filename)
     cleansed = cleanse_data(rawdata)
-    simnum = 1  # change this number to one that you deem appropriate
+    simnum = 5  # change this number to one that you deem appropriate
     days = 25
     mc_sim(simnum, days, cleansed)
     return
