@@ -1,4 +1,5 @@
 # Encephalo Investments Coding Pre-Test - Revised April 2020
+##Praneeth Bhattiprolu
 
 import pandas as pd
 import numpy as np
