@@ -1,5 +1,6 @@
 # Encephalo Investments - Quantitative Developer Pre-Test
-## William Risher
+## Praneeth Bhattiprolu
+
 
 # Part 1: git
 - fork this repository
